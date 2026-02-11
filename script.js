@@ -941,6 +941,61 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// Zalo Button Logic
+document.addEventListener('DOMContentLoaded', function() {
+    const zaloButton = document.getElementById('zaloButton');
+    const contactSection = document.getElementById('contact');
+    
+    if (zaloButton && contactSection) {
+        // Function to check if user is in contact section
+        function checkZaloButtonVisibility() {
+            const contactSectionRect = contactSection.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            
+            // Show Zalo button when contact section is in viewport
+            if (contactSectionRect.top < windowHeight * 0.8 && 
+                contactSectionRect.bottom > windowHeight * 0.2) {
+                zaloButton.classList.add('visible');
+            } else {
+                zaloButton.classList.remove('visible');
+            }
+        }
+        
+        // Initial check
+        checkZaloButtonVisibility();
+        
+        // Check on scroll
+        window.addEventListener('scroll', checkZaloButtonVisibility);
+        
+        // Check on resize
+        window.addEventListener('resize', checkZaloButtonVisibility);
+        
+        // Optional: Always show after clicking contact link
+        const contactLinks = document.querySelectorAll('a[href="#contact"]');
+        contactLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                setTimeout(() => {
+                    zaloButton.classList.add('visible');
+                }, 1000);
+            });
+        });
+        
+        // Add click animation
+        zaloButton.addEventListener('click', function() {
+            // Track Zalo click if you have analytics
+            console.log('Zalo button clicked');
+            
+            // Optional: Send to Google Analytics
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'zalo_click', {
+                    'event_category': 'Contact',
+                    'event_label': 'Zalo Floating Button'
+                });
+            }
+        });
+    }
+});
+
 // === ERROR HANDLING FOR AUDIO ===
 window.addEventListener('error', function(e) {
     if (e.target.tagName === 'AUDIO') {
