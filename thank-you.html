@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cảm ơn bạn đã liên hệ!</title>
+    <link rel="stylesheet" href="style.css?v=1.2">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .thank-you-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 100%);
+        }
+        
+        .thank-you-card {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        
+        .checkmark {
+            font-size: 4rem;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        
+        .thank-you-title {
+            font-size: 2.5rem;
+            color: #e91e63;
+            margin-bottom: 20px;
+            font-family: 'Dancing Script', cursive;
+        }
+        
+        .back-home {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 30px;
+            background: #e91e63;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .back-home:hover {
+            background: #c2185b;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(233, 30, 99, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="thank-you-container">
+        <div class="thank-you-card">
+            <div class="checkmark">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h1 class="thank-you-title">Tin nhắn đã được gửi thành công!</h1>
+            <p>Cảm ơn bạn đã liên hệ với Nguyễn Đức Hải. Tôi sẽ phản hồi lại bạn trong thời gian sớm nhất.</p>
+            <p>Trong thời gian chờ đợi, bạn có thể:</p>
+            <ul style="text-align: left; margin: 20px 0; padding-left: 20px;">
+                <li>Xem thêm các video MC trên YouTube</li>
+                <li>Đọc các bài viết mới nhất trong blog</li>
+                <li>Theo dõi tôi trên mạng xã hội</li>
+            </ul>
+            <a href="index.html" class="back-home">
+                <i class="fas fa-home"></i> Quay về trang chủ
+            </a>
+        </div>
+    </div>
+</body>
+</html>

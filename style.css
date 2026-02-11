@@ -1,0 +1,2542 @@
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #e91e63; /* Màu hồng chủ đạo cho MC */
+    --primary-dark: #c2185b;
+    --secondary: #1a237e; /* Màu xanh dương chuyên nghiệp */
+    --accent: #ff9800; /* Màu cam nhấn */
+    --light: #f8fafc;
+    --dark: #121212;
+    --gray: #64748b;
+    --light-gray: #e2e8f0;
+    --white: #ffffff;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.15);
+    --border-radius: 16px;
+    --transition: all 0.3s ease;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: var(--dark);
+    background-color: var(--white);
+    overflow-x: hidden;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+section {
+    padding: 80px 0;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+p {
+    margin-bottom: 1rem;
+    color: var(--gray);
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.btn-primary {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: var(--white);
+    padding: 14px 32px;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 1rem;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+.section-title {
+    text-align: center;
+    position: relative;
+    margin-bottom: 3rem;
+    color: var(--secondary);
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    border-radius: 2px;
+}
+
+/* Header & Navigation */
+header {
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: var(--shadow);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    height: 80px;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.5s ease;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    width: 100%;
+    height: 100%;
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+    color: var(--primary);
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.tagline {
+    font-size: 0.85rem;
+    color: var(--gray);
+    font-style: italic;
+    display: block;
+    margin-top: -2px;
+    line-height: 1.3;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+}
+
+.nav-menu li {
+    margin-left: 2rem;
+}
+
+/* ĐOẠN ĐÃ SỬA - XÓA GẠCH DƯỚI */
+.nav-menu a {
+    text-decoration: none;
+    color: var(--dark);
+    font-weight: 500;
+    transition: var(--transition);
+    padding: 8px 15px; /* Thay đổi: thêm padding ngang */
+    border-radius: 8px; /* Thêm: bo góc cho highlight */
+    /* XÓA: position: relative; (không cần vì không dùng pseudo-element nữa) */
+}
+
+
+/* .nav-menu a:hover::after {
+    width: 100%;
+} */
+/* THAY THẾ BẰNG HIGHLIGHT TRÒN */
+.nav-menu a:hover {
+    color: var(--primary);
+    background-color: rgba(233, 30, 99, 0.1); /* Thêm: background khi hover */
+}
+
+/* Thêm style cho active link */
+.nav-menu a.active {
+    color: white !important;
+    background-color: var(--primary) !important;
+    font-weight: 600;
+}
+
+/* Welcome Controls & Magic Button */
+.welcome-controls {
+    position: absolute;
+    top: 100px;
+    left: 20px;
+    z-index: 100;
+}
+
+.magic-button {
+    position: relative;
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 50px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 6px 20px rgba(106, 17, 203, 0.3);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.magic-button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 30px rgba(106, 17, 203, 0.4);
+    background: linear-gradient(135deg, #2575fc 0%, #6a11cb 100%);
+}
+
+.magic-button:hover .sparkle {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.magic-button:active {
+    transform: translateY(0) scale(0.98);
+}
+
+.magic-button i {
+    font-size: 1.2rem;
+    animation: spin 4s linear infinite;
+    animation-play-state: paused;
+}
+
+.magic-button:hover i {
+    animation-play-state: running;
+}
+
+.sparkle {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.3s ease;
+    background: radial-gradient(circle at center, 
+        rgba(255, 255, 255, 0.4) 0%, 
+        rgba(255, 255, 255, 0.2) 30%, 
+        transparent 70%);
+    pointer-events: none;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* === MOBILE MENU STYLES - COMPACT & RIGHT ALIGN === */
+
+/* Nút mobile menu */
+.mobile-menu {
+    display: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: var(--primary);
+    background: none;
+    border: none;
+    padding: 10px;
+    z-index: 1001;
+    transition: var(--transition);
+}
+
+.mobile-menu:hover {
+    color: var(--primary-dark);
+    transform: scale(1.1);
+}
+
+/* Mobile menu icon animation */
+.mobile-menu i {
+    transition: transform 0.3s ease;
+}
+
+.mobile-menu.active i {
+    transform: rotate(90deg);
+    color: var(--primary-dark);
+}
+
+/* === Touch the heart FIXES - ENSURE WHITE TEXT === */
+
+.dark-theme {
+    /* Đảm bảo tất cả text chính là màu trắng sáng */
+    color: #e6f1ff !important;
+}
+
+/* Tất cả các tiêu đề */
+.dark-theme h1,
+.dark-theme h2,
+.dark-theme h3,
+.dark-theme h4,
+.dark-theme h5,
+.dark-theme h6 {
+    color: #ffffff !important;
+    /* LOẠI BỎ TEXT SHADOW */
+    text-shadow: none !important;
+}
+
+/* Các đoạn văn bản */
+.dark-theme p {
+    color: #ccd6f6 !important; /* Màu sáng hơn xám */
+}
+
+/* Trong welcome section */
+.dark-theme .welcome-text {
+    color: #ccd6f6 !important;
+}
+
+.dark-theme .welcome-title {
+    color: #00d4ff !important; /* Giữ màu cyan cho tiêu đề chính */
+    /* LOẠI BỎ TEXT SHADOW */
+    text-shadow: none !important;
+}
+
+.dark-theme .highlight {
+    color: #64ffda !important; /* Màu xanh lá sáng cho highlight */
+}
+
+.dark-theme .signature-name {
+    color: #00d4ff !important;
+}
+
+.dark-theme .signature-title {
+    color: #8892b0 !important;
+}
+
+/* MC Section */
+.dark-theme .mc-slogan {
+    color: #ffffff !important;
+    /* LOẠI BỎ TEXT SHADOW */
+    text-shadow: none !important;
+}
+
+.dark-theme .video-description p {
+    color: #ccd6f6 !important;
+}
+
+.dark-theme .highlight-item span {
+    color: #e6f1ff !important;
+}
+
+/* Expertise Section */
+.dark-theme .expertise-card h3 {
+    color: #ffffff !important;
+}
+
+.dark-theme .expertise-card p {
+    color: #ccd6f6 !important;
+}
+
+/* Blog Section */
+.dark-theme .blog-card h3 {
+    color: #ffffff !important;
+}
+
+.dark-theme .blog-card p {
+    color: #ccd6f6 !important;
+}
+
+.dark-theme .blog-meta {
+    color: #8892b0 !important;
+}
+
+/* Contact Section */
+.dark-theme .contact-info h3 {
+    color: #ffffff !important;
+}
+
+.dark-theme .contact-info > p {
+    color: #ccd6f6 !important;
+}
+
+.dark-theme .contact-details p {
+    color: #ccd6f6 !important;
+}
+
+/* THÊM ĐOẠN NÀY SAU DÒNG 779 */
+.dark-theme .contact-info .social-links {
+    margin-top: 40px !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+.dark-theme .social-links h4 {
+    color: #ffffff !important;
+}
+
+/* Footer */
+.dark-theme footer {
+    background-color: #0a192f !important;
+}
+
+.dark-theme .footer-logo h2 {
+    color: #00d4ff !important;
+}
+
+.dark-theme .footer-logo p,
+.dark-theme .footer-contact p {
+    color: #8892b0 !important;
+}
+
+.dark-theme .footer-links h4 {
+    color: #ffffff !important;
+}
+
+.dark-theme .footer-links a {
+    color: #ccd6f6 !important;
+}
+
+.dark-theme .footer-links a:hover {
+    color: #00d4ff !important;
+}
+
+/* Form trong dark theme */
+.dark-theme .contact-form input,
+.dark-theme .contact-form select,
+.dark-theme .contact-form textarea {
+    color: #e6f1ff !important;
+    background-color: #112240 !important;
+}
+
+.dark-theme .contact-form input::placeholder,
+.dark-theme .contact-form textarea::placeholder {
+    color: #8892b0 !important;
+}
+
+/* === Touch the heart - TEXT TRẮNG TRÊN NỀN TỐI === */
+
+/* TẤT CẢ TEXT MÀU TRẮNG */
+.dark-theme,
+.dark-theme * {
+    color: #ffffff !important;
+}
+
+/* Một số text có thể dùng màu trắng sáng hơn */
+.dark-theme p,
+.dark-theme .welcome-text,
+.dark-theme .video-description p,
+.dark-theme .expertise-card p,
+.dark-theme .blog-card p,
+.dark-theme .contact-info > p,
+.dark-theme .contact-details p,
+.dark-theme .footer-logo p,
+.dark-theme .footer-contact p {
+    color: #f0f8ff !important; /* Màu trắng sáng hơn một chút */
+}
+
+/* Tiêu đề màu trắng - LOẠI BỎ TEXT SHADOW */
+.dark-theme h1,
+.dark-theme h2,
+.dark-theme h3,
+.dark-theme h4,
+.dark-theme h5,
+.dark-theme h6 {
+    color: #ffffff !important;
+    text-shadow: none !important;
+}
+
+/* Highlight và accent text */
+.dark-theme .highlight,
+.dark-theme .signature-name,
+.dark-theme .welcome-title,
+.dark-theme .section-title {
+    color: #00d4ff !important; /* Giữ màu cyan cho tiêu đề chính */
+    text-shadow: none !important;
+}
+
+/* Các text khác */
+.dark-theme .tagline {
+    color: #a0d2ff !important;
+}
+
+.dark-theme .signature-title {
+    color: #b0e0e6 !important;
+}
+
+/* Magic Button trong Touch the heart */
+.magic-button.touch-heart-mode {
+    background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%) !important;
+    border: 2px solid rgba(0, 212, 255, 0.4) !important;
+    box-shadow: 0 6px 20px rgba(0, 212, 255, 0.3) !important;
+}
+
+.magic-button.touch-heart-mode span {
+    color: #ffffff !important; /* Text nút màu trắng */
+}
+
+.magic-button.touch-heart-mode:hover {
+    background: linear-gradient(135deg, #0099cc 0%, #00d4ff 100%) !important;
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.5) !important;
+}
+
+.magic-button.touch-heart-mode i {
+    color: #ffffff !important; /* Icon màu trắng */
+}
+
+/* List items */
+.dark-theme .expertise-list li,
+.dark-theme li {
+    color: #f0f8ff !important;
+}
+
+/* Blog meta */
+.dark-theme .blog-meta,
+.dark-theme .blog-meta span {
+    color: #b0c4de !important;
+}
+
+/* Link trong footer */
+.dark-theme .footer-links a {
+    color: #d1e8ff !important;
+}
+
+.dark-theme .footer-links a:hover {
+    color: #00d4ff !important;
+}
+
+/* Form elements - chữ trắng */
+.dark-theme .contact-form input,
+.dark-theme .contact-form select,
+.dark-theme .contact-form textarea {
+    color: #ffffff !important;
+    background-color: #112240 !important;
+    border-color: #1e3a5f !important;
+}
+
+.dark-theme .contact-form input::placeholder,
+.dark-theme .contact-form textarea::placeholder,
+.dark-theme .contact-form select {
+    color: #a0c8ff !important;
+}
+
+/* Placeholder cho select option */
+.dark-theme .contact-form option {
+    color: #ffffff !important;
+    background-color: #112240 !important;
+}
+
+/* Button trong form */
+.dark-theme .btn-primary,
+.dark-theme .contact-form button[type="submit"] {
+    color: #0a192f !important; /* Text đen để dễ đọc trên nền cyan */
+    background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%) !important;
+}
+
+.dark-theme .btn-secondary {
+    color: #00d4ff !important;
+    border-color: #00d4ff !important;
+}
+
+.dark-theme .btn-secondary:hover {
+    color: #0a192f !important;
+    background: #00d4ff !important;
+}
+
+.dark-theme .btn-cta {
+    color: #0099cc !important; /* Text xanh đậm trên nền trắng */
+    background: #ffffff !important;
+}
+
+.dark-theme .btn-cta:hover {
+    color: #ffffff !important;
+    background: transparent !important;
+    border-color: #ffffff !important;
+}
+
+/* Read more link */
+.dark-theme .read-more {
+    color: #00d4ff !important;
+}
+
+.dark-theme .read-more:hover {
+    color: #64ffda !important;
+}
+
+/* Social icons */
+.dark-theme .social-icons a {
+    color: #00d4ff !important;
+    background: rgba(0, 212, 255, 0.1) !important;
+}
+
+.dark-theme .social-icons a:hover {
+    color: #ffffff !important;
+    background: #00d4ff !important;
+}
+
+/* === Touch the heart BACKGROUND === */
+body.dark-theme {
+    background: 
+        linear-gradient(135deg, #020c1b 0%, #0a192f 100%) !important;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Hiệu ứng sao nhấp nháy */
+@keyframes cosmic-twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+}
+
+body.dark-theme::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #ffffff, transparent),
+        radial-gradient(2px 2px at 40px 70px, #00d4ff, transparent),
+        radial-gradient(1px 1px at 90px 40px, #64ffda, transparent),
+        radial-gradient(1px 1px at 130px 80px, #ffffff, transparent),
+        radial-gradient(2px 2px at 160px 120px, #00d4ff, transparent);
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    opacity: 0.2;
+    z-index: -1;
+    animation: cosmic-twinkle 5s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+/* Container trong Touch the heart - LOẠI BỎ BORDER ĐẬM */
+.dark-theme .welcome-card,
+.dark-theme .expertise-card,
+.dark-theme .blog-card,
+.dark-theme .contact-form,
+.dark-theme .contact-info,
+.dark-theme .mc-banner {
+    background-color: rgba(17, 34, 64, 0.85) !important;
+    backdrop-filter: blur(10px);
+    /* LOẠI BỎ BORDER ĐẬM VÀ THAY THẾ BẰNG BORDER MỎNG HƠN */
+    border: 1px solid rgba(0, 212, 255, 0.08) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* THÊM ĐOẠN NÀY NGAY SAU DÒNG 903 để override cho contact-info */
+.dark-theme .contact-info {
+    background-color: transparent !important;
+    backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Banner overlay */
+.dark-theme .banner-overlay {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.9) 0%, rgba(0, 153, 204, 0.9) 100%) !important;
+}
+
+/* Video section */
+.dark-theme .mc-video-section h3,
+.dark-theme .video-description h3 {
+    color: #00d4ff !important;
+}
+
+/* Highlight items */
+.dark-theme .highlight-item i {
+    color: #64ffda !important;
+}
+
+.dark-theme .highlight-item span {
+    color: #ffffff !important;
+}
+
+/* Section title underline */
+.dark-theme .section-title::after {
+    background: linear-gradient(to right, #00d4ff, #64ffda) !important;
+}
+
+/* Copyright text */
+.dark-theme .copyright p {
+    color: #8892b0 !important;
+}
+
+/* Mobile menu trong Touch the heart - LOẠI BỎ VIỀN VUÔNG */
+.dark-theme .nav-menu {
+    background-color: rgba(17, 34, 64, 0.98) !important;
+    /* LOẠI BỎ VIỀN VUÔNG ĐẬM VÀ THAY THẾ BẰNG VIỀN NHẸ */
+    border: 1px solid rgba(0, 212, 255, 0.1) !important;
+    backdrop-filter: blur(15px) !important;
+    border-radius: 12px !important;
+}
+
+.dark-theme .nav-menu a {
+    color: #ffffff !important;
+}
+
+.dark-theme .nav-menu a:hover {
+    background-color: rgba(0, 212, 255, 0.15) !important;
+    color: #00d4ff !important;
+}
+
+.dark-theme .nav-menu a.active {
+    background-color: #00d4ff !important;
+    color: #0a192f !important;
+}
+
+/* Fix cho mobile menu trong dark theme */
+@media (max-width: 768px) {
+    .dark-theme .nav-menu {
+        background-color: rgba(17, 34, 64, 0.98) !important;
+        border: 1px solid rgba(0, 212, 255, 0.15) !important;
+        border-radius: 16px !important; /* THÊM DÒNG NÀY */
+    }
+        
+    .dark-theme .nav-menu a {
+        color: #ccd6f6;
+    }
+    
+    .dark-theme .nav-menu a:hover {
+        background-color: rgba(0, 212, 255, 0.1);
+        color: #00d4ff;
+    }
+    
+    .dark-theme .nav-menu a.active {
+        background-color: #00d4ff !important;
+        color: #0a192f !important;
+    }
+    
+    .dark-theme .nav-menu a.active:hover {
+        background-color: #0099cc !important;
+        color: #0a192f !important;
+    }
+}
+
+/* Responsive styles cho mobile */
+@media (max-width: 768px) {
+    /* Hiển thị nút menu trên mobile */
+    .mobile-menu {
+        display: block !important;
+    }
+    
+    .nav-menu {
+        display: none; /* GIỮ NGUYÊN */
+        position: fixed;
+        top: 65px;
+        right: 15px;
+        width: auto;
+        min-width: 180px;
+        max-width: 220px;
+        background-color: rgba(255, 255, 255, 0.98);
+        flex-direction: column;
+        padding: 15px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        z-index: 999;
+        text-align: left;
+        backdrop-filter: blur(10px);
+        border-radius: 16px !important; /* SỬA TỪ 12px LÊN 16px */
+        border: 1px solid var(--light-gray);
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    
+    /* Khi menu active - SỬA LẠI */
+    .nav-menu.active {
+        display: flex; /* QUAN TRỌNG: phải có display: flex */
+        max-height: 350px;
+        padding: 15px;
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    /* Menu items - compact hơn */
+    .nav-menu li {
+        margin: 0;
+        width: 100%;
+        opacity: 0;
+        transform: translateX(10px);
+        transition: all 0.3s ease;
+    }
+    
+    /* Hiệu ứng xuất hiện cho từng item */
+    .nav-menu.active li {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    
+    /* Delay cho từng item */
+    .nav-menu.active li:nth-child(1) { transition-delay: 0.05s; }
+    .nav-menu.active li:nth-child(2) { transition-delay: 0.1s; }
+    .nav-menu.active li:nth-child(3) { transition-delay: 0.15s; }
+    .nav-menu.active li:nth-child(4) { transition-delay: 0.2s; }
+    .nav-menu.active li:nth-child(5) { transition-delay: 0.25s; }
+    
+    /* Link styling - compact */
+    .nav-menu a {
+        display: block;
+        padding: 10px 15px;
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: var(--dark);
+        text-decoration: none;
+        border-radius: 10px !important; /* SỬA TỪ 6px LÊN 10px */
+        transition: all 0.2s ease;
+        margin: 2px 0;
+        white-space: nowrap;
+    }
+    
+    .nav-menu a:hover {
+        background-color: rgba(233, 30, 99, 0.1);
+        color: var(--primary);
+        padding-left: 20px; /* Hiệu ứng lùi sang phải */
+    }
+    
+    .nav-menu a.active {
+        background-color: var(--primary) !important;
+        color: white !important; /* QUAN TRỌNG: giữ !important để đè lên các style khác */
+        font-weight: 600;
+    }
+    
+    /* Đảm bảo hover không đè lên active */
+    .nav-menu a.active:hover {
+        background-color: var(--primary-dark) !important;
+        color: white !important;
+    }	
+    
+    /* Overlay nhẹ */
+    .nav-menu::before {
+        content: '';
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.2);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: -1;
+    }
+    
+    .nav-menu.active::before {
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    /* Header compact hơn trên mobile */
+    header {
+        height: 65px;
+    }
+    
+    nav {
+        padding: 0 15px;
+        height: 65px;
+    }
+    
+    /* Logo nhỏ hơn */
+    .logo h1 {
+        font-size: 1.4rem;
+        line-height: 1.2;
+    }
+    
+    /* TAGLINE - SỬA LẠI ĐỂ HIỂN THỊ ĐẦY ĐỦ */
+    .tagline {
+        font-size: 0.7rem !important;
+        margin-top: 1px !important;
+        line-height: 1.2 !important;
+        display: block;
+        white-space: normal; /* Cho phép xuống dòng */
+        max-width: 180px; /* Giảm độ rộng tối đa một chút */
+        overflow: visible; /* Cho phép hiển thị đầy đủ */
+        text-overflow: clip; /* Không dùng ellipsis */
+        /* THÊM: canh chỉnh văn bản */
+        text-align: left;
+        word-wrap: break-word; /* Tự động xuống dòng */
+        word-break: break-word; /* Ngắt từ cho tiếng Việt */
+    }
+    
+    /* Canh chỉnh logo và tagline */
+    /* Canh chỉnh logo và tagline */
+    .logo {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        padding: 3px 0;
+        cursor: pointer; /* THÊM DÒNG NÀY - cho phép click */
+    }
+
+        /* THÊM: Hiệu ứng touch-friendly cho mobile */
+    .logo:active {
+        transform: scale(0.95); /* THÊM DÒNG NÀY - hiệu ứng khi chạm */
+        opacity: 0.8; /* THÊM DÒNG NÀY - làm mờ nhẹ khi chạm */
+    }
+
+    .logo:hover {
+        transform: scale(1.02); /* Hiệu ứng phóng to nhẹ khi hover */
+        opacity: 0.9; /* Làm mờ nhẹ khi hover */
+    }
+
+    /* Optional: Thêm hiệu ứng active (khi click) */
+    .logo:active {
+        transform: scale(0.98);
+    }
+
+    /* Đảm bảo h1 trong logo cũng có cursor pointer */
+    .logo h1 {
+        cursor: pointer;
+    }
+
+    /* Thêm hover effect cho tagline */
+    .logo:hover .tagline {
+        color: var(--primary); /* Đổi màu tagline khi hover */
+    }
+
+    /* Welcome controls on mobile */
+    .welcome-controls {
+        position: relative;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+    
+    .magic-button {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Welcome Section */
+.welcome-section {
+    padding-top: 120px;
+    background: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 100%);
+    transition: background 0.5s ease;
+}
+
+.welcome-card {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    padding: 50px;
+    box-shadow: var(--shadow-lg);
+    border-left: 5px solid var(--primary);
+    transition: all 0.5s ease;
+}
+
+.welcome-title {
+    color: var(--primary);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.welcome-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.welcome-text {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: #444;
+}
+
+.highlight {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.signature {
+    margin-top: 3rem;
+    text-align: right;
+    font-family: 'Dancing Script', cursive;
+}
+
+.signature h3 {
+    font-size: 2.2rem;
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.signature-title {
+    color: var(--gray);
+    font-size: 1rem;
+    font-style: italic;
+}
+
+/* Dark Theme Styles */
+body.dark-theme {
+    --primary: #00d4ff;
+    --primary-dark: #0099cc;
+    --secondary: #0a192f;
+    --accent: #64ffda;
+    --light: #0a192f;
+    --dark: #e6f1ff;
+    --gray: #8892b0;
+    --light-gray: #112240;
+    --white: #0a192f;
+    background-color: #020c1b;
+    color: #e6f1ff;
+}
+
+.dark-theme .welcome-section {
+    background: linear-gradient(135deg, #020c1b 0%, #0a192f 100%);
+}
+
+.dark-theme .welcome-card,
+.dark-theme .expertise-card,
+.dark-theme .blog-card {
+    background-color: #112240;
+    color: #e6f1ff;
+}
+
+.dark-theme p {
+    color: #8892b0;
+}
+
+.dark-theme header {
+    background-color: rgba(10, 25, 47, 0.95);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.dark-theme .nav-menu a {
+    color: #ccd6f6;
+}
+
+.dark-theme .nav-menu a:hover {
+    color: var(--primary);
+}
+
+.dark-theme footer {
+    background-color: #020c1b;
+}
+
+.dark-theme .footer-links a {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.dark-theme .footer-links a:hover {
+    color: var(--primary);
+}
+
+/* Gravity Wave Effect */
+.gravity-wave {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.gravity-wave.active {
+    opacity: 1;
+}
+
+.wave {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid var(--primary);
+    animation: waveExpand 2s cubic-bezier(0.17, 0.67, 0.83, 0.67) infinite;
+    animation-delay: calc(var(--i) * 0.2s);
+}
+
+@keyframes waveExpand {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        width: 100vw;
+        height: 100vw;
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1.5);
+    }
+}
+
+/* Shooting Stars */
+.shooting-stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.shooting-stars.active {
+    opacity: 1;
+}
+
+.star {
+    position: absolute;
+    background: linear-gradient(90deg, transparent, white, transparent);
+    height: 2px;
+    opacity: 0;
+    filter: blur(1px);
+}
+
+.star::before {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: white;
+    right: -5px;
+    top: -4px;
+    box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.5);
+}
+
+@keyframes shootingStar {
+    0% {
+        opacity: 0;
+        transform: translateX(0) translateY(0) rotate(45deg);
+    }
+    10% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(100vw) translateY(100vh) rotate(45deg);
+    }
+}
+
+/* MC Section - TỐI ƯU CHO ẢNH 1707x1221 */
+.mc-section {
+    background-color: #f8f9fa;
+    transition: background-color 0.5s ease;
+}
+
+.dark-theme .mc-section {
+    background-color: #0a192f;
+}
+
+.mc-banner {
+    display: flex;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    margin: 40px 0;
+    min-height: 450px;
+    box-shadow: var(--shadow-lg);
+    background: var(--white);
+    transition: all 0.5s ease;
+}
+
+.dark-theme .mc-banner {
+    background: #112240;
+}
+
+.mc-banner-image {
+    flex: 1;
+    object-fit: cover;
+    object-position: center 40%; /* Tập trung vào khuôn mặt */
+    width: 100%;
+    height: 100%;
+    filter: brightness(1.05) contrast(1.1);
+}
+
+.banner-overlay {
+    flex: 1;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--white);
+}
+
+.mc-slogan {
+    font-size: 2.3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.btn-cta {
+    background: var(--white);
+    color: var(--primary);
+    padding: 14px 35px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    align-self: flex-start;
+    border: 2px solid transparent;
+}
+
+.btn-cta:hover {
+    background: transparent;
+    color: var(--white);
+    border-color: var(--white);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* MC Video Section */
+.mc-video-section h3 {
+    text-align: center;
+    color: var(--secondary);
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+.video-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+/* Video YouTube Embed */
+.video-embed {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 ratio */
+    height: 0;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-bottom: 0;
+}
+
+.video-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.video-description p {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+    color: #555;
+}
+
+.dark-theme .video-description p {
+    color: #8892b0;
+}
+
+.mc-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.highlight-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.highlight-item i {
+    color: var(--primary);
+    font-size: 1.2rem;
+    width: 24px;
+}
+
+.highlight-item span {
+    font-weight: 500;
+    color: var(--dark);
+}
+
+.dark-theme .highlight-item span {
+    color: #e6f1ff;
+}
+
+.btn-secondary {
+    display: inline-block;
+    background: transparent;
+    color: var(--primary);
+    padding: 10px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    border: 2px solid var(--primary);
+    transition: var(--transition);
+}
+
+.btn-secondary i {
+    margin-left: 8px;
+}
+
+.btn-secondary:hover {
+    background: var(--primary);
+    color: var(--white);
+}
+
+/* Expertise Section */
+.expertise-section {
+    background-color: var(--white);
+    transition: background-color 0.5s ease;
+}
+
+.dark-theme .expertise-section {
+    background-color: #020c1b;
+}
+
+.expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.expertise-card {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    padding: 35px 30px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    border-top: 4px solid transparent;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.expertise-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+}
+
+.it-card {
+    border-top-color: #2196f3;
+}
+
+.biometric-card {
+    border-top-color: #4caf50;
+}
+
+.investment-card {
+    border-top-color: #ff9800;
+}
+
+.expertise-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: var(--secondary);
+}
+
+.dark-theme .expertise-icon {
+    color: #00d4ff;
+}
+
+.expertise-card h3 {
+    margin-bottom: 15px;
+    color: var(--secondary);
+}
+
+.dark-theme .expertise-card h3 {
+    color: #e6f1ff;
+}
+
+.expertise-card p {
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.expertise-list {
+    list-style: none;
+    margin-top: 20px;
+}
+
+.expertise-list li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.expertise-list i {
+    color: var(--primary);
+    margin-right: 10px;
+    font-size: 0.9rem;
+}
+
+.dark-theme .expertise-list i {
+    color: #64ffda;
+}
+
+/* Blog Section */
+.blog-section {
+    background-color: #f8f9fa;
+    transition: background-color 0.5s ease;
+}
+
+.dark-theme .blog-section {
+    background-color: #0a192f;
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.blog-card {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.blog-category {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: white;
+}
+
+.mc-category {
+    background-color: var(--primary);
+}
+
+.it-category {
+    background-color: #2196f3;
+}
+
+.bio-category {
+    background-color: #4caf50;
+}
+
+.blog-card h3 {
+    margin: 10px 0 15px 0;
+    color: var(--secondary);
+    font-size: 1.5rem;
+}
+
+.dark-theme .blog-card h3 {
+    color: #e6f1ff;
+}
+
+.blog-card p {
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.dark-theme .blog-card p {
+    color: #8892b0;
+}
+
+.blog-meta {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    color: var(--gray);
+}
+
+.dark-theme .blog-meta {
+    color: #8892b0;
+}
+
+.blog-meta span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.read-more {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: var(--transition);
+}
+
+.read-more:hover {
+    gap: 10px;
+}
+
+/* Contact Section */
+.contact-section {
+    background-color: var(--white);
+    transition: background-color 0.5s ease;
+}
+
+.dark-theme .contact-section {
+    background-color: transparent !important; /* Thay đổi từ #020c1b */
+    background: linear-gradient(135deg, #020c1b 0%, #0a192f 100%) !important; /* Thêm dòng này */
+}
+
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.contact-info h3 {
+    color: var(--secondary);
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.dark-theme .contact-info h3 {
+    color: #e6f1ff;
+}
+
+.contact-info > p {
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+}
+
+.contact-details p {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.contact-details i {
+    color: var(--primary);
+    width: 20px;
+    text-align: center;
+}
+
+.social-links {
+    margin-top: 40px;
+}
+
+.social-links h4 {
+    margin-bottom: 15px;
+    color: var(--secondary);
+}
+
+.dark-theme .social-links h4 {
+    color: #e6f1ff;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background-color: var(--light);
+    border-radius: 50%;
+    color: var(--secondary);
+    font-size: 1.2rem;
+    transition: var(--transition);
+}
+
+.dark-theme .social-icons a {
+    background-color: #112240;
+    color: #00d4ff;
+}
+
+.social-icons a:hover {
+    background-color: var(--primary);
+    color: white;
+    transform: translateY(-3px);
+}
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+    padding: 15px;
+    border: 1px solid var(--light-gray);
+    border-radius: 12px !important; /* ĐÃ SỬA */
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    transition: var(--transition);
+    background-color: var(--white);
+    color: var(--dark);
+}
+.dark-theme .contact-form {
+    background-color: rgba(17, 34, 64, 0.85) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 212, 255, 0.08) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+    padding: 30px !important;
+}
+
+.dark-theme .contact-form input,
+.dark-theme .contact-form select,
+.dark-theme .contact-form textarea {
+    color: #ffffff !important;
+    background-color: rgba(255, 255, 255, 0.05) !important; /* Thay đổi từ #112240 */
+    border: 1px solid rgba(0, 212, 255, 0.15) !important; /* Thay đổi từ border-color */
+    border-radius: 12px !important;
+    transition: all 0.3s ease !important; /* Thêm dòng này */
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.1);
+    border-radius: 12px !important; /* THÊM DÒNG NÀY */
+}
+
+.dark-theme .contact-form input:focus,
+.dark-theme .contact-form select:focus,
+.dark-theme .contact-form textarea:focus {
+    border-color: #00d4ff !important;
+    box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1) !important;
+    background-color: rgba(0, 212, 255, 0.05) !important; /* Thêm dòng này */
+}
+
+/* Footer */
+footer {
+    background-color: var(--secondary);
+    color: var(--white);
+    padding: 60px 0 30px 0;
+    transition: background-color 0.5s ease;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-logo h2 {
+    color: var(--white);
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.footer-logo p {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-links h4 {
+    color: var(--white);
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: var(--transition);
+}
+
+.footer-links a:hover {
+    color: var(--primary);
+    padding-left: 5px;
+}
+
+.footer-contact h4 {
+    color: var(--white);
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+.footer-contact p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 10px;
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.copyright p {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.powered-by {
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+/* Back to Top Button */
+#backToTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    display: none;
+    z-index: 999;
+}
+
+#backToTop:hover {
+    background: var(--primary-dark);
+    transform: translateY(-3px);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .expertise-grid,
+    .blog-grid,
+    .contact-content,
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .video-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .mc-slogan {
+        font-size: 2rem;
+    }
+    
+    .welcome-title {
+        font-size: 2.5rem;
+    }
+    
+    .mc-banner {
+        min-height: 400px;
+    }
+    
+    .video-embed {
+        padding-bottom: 56.25%; /* Giữ tỷ lệ 16:9 */
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .expertise-grid,
+    .blog-grid,
+    .contact-content,
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+    
+    h2 {
+        font-size: 2rem;
+    }
+    
+    .mc-banner {
+        flex-direction: column;
+        min-height: auto;
+    }
+    
+    .mc-banner-image {
+        height: 300px;
+        width: 100%;
+    }
+    
+    .banner-overlay {
+        padding: 2rem;
+    }
+    
+    .mc-slogan {
+        font-size: 1.8rem;
+        text-align: center;
+    }
+    
+    .btn-cta {
+        align-self: center;
+    }
+    
+    .welcome-card {
+        padding: 30px 20px;
+    }
+    
+    .welcome-title {
+        font-size: 2rem;
+    }
+    
+    section {
+        padding: 60px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .mc-slogan {
+        font-size: 1.6rem;
+    }
+    
+    .mc-banner-image {
+        height: 250px;
+    }
+    
+    .banner-overlay {
+        padding: 1.5rem;
+    }
+    
+    .welcome-title {
+        font-size: 1.8rem;
+    }
+    
+    h2 {
+        font-size: 1.8rem;
+    }
+    
+    .btn-cta {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+    
+    .btn-secondary {
+        padding: 8px 20px;
+        font-size: 0.9rem;
+    }
+    
+    /* Mobile menu trên màn hình rất nhỏ */
+    .nav-menu {
+        right: 10px;
+        min-width: 160px;
+    }
+    
+    .nav-menu a {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
+    
+    .tagline {
+        font-size: 0.65rem !important;
+        max-width: 150px;
+    }
+    
+    .magic-button {
+        padding: 10px 15px;
+        font-size: 0.85rem;
+    }
+}
+
+/* Animation Classes */
+.fade-in {
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* === Touch the heart BACKGROUND === */
+body.dark-theme {
+    background: 
+        radial-gradient(ellipse at top, #0a192f 0%, #020c1b 70%) !important;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Hiệu ứng sao nhấp nháy */
+@keyframes twinkle {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 1; }
+}
+
+body.dark-theme::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+        radial-gradient(2px 2px at 40px 70px, #fff, transparent),
+        radial-gradient(1px 1px at 90px 40px, #ddd, transparent),
+        radial-gradient(1px 1px at 130px 80px, #fff, transparent),
+        radial-gradient(2px 2px at 160px 120px, #eee, transparent);
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    opacity: 0.15;
+    z-index: -1;
+    animation: twinkle 8s ease-in-out infinite alternate;
+}
+
+/* Cải thiện độ tương phản cho tất cả container */
+.dark-theme .welcome-card,
+.dark-theme .expertise-card,
+.dark-theme .blog-card {
+    background-color: rgba(17, 34, 64, 0.9) !important;
+    backdrop-filter: blur(10px);
+    /* LOẠI BỎ BORDER ĐẬM */
+    border: 1px solid rgba(0, 212, 255, 0.08) !important;
+}
+/* === FIX MENU TEXT COLOR IN Inspire Mode MODE === */
+
+/* Đảm bảo khi KHÔNG ở dark theme, menu có màu đen như bình thường */
+body:not(.dark-theme) .nav-menu a {
+    color: var(--dark) !important;
+}
+
+body:not(.dark-theme) .nav-menu a:hover {
+    color: var(--primary) !important;
+}
+
+body:not(.dark-theme) .nav-menu a.active {
+    color: white !important;
+    background-color: var(--primary) !important;
+}
+
+body:not(.dark-theme) .nav-menu a.active:hover {
+    color: white !important;
+    background-color: var(--primary-dark) !important;
+}
+
+/* Fix cho mobile menu trong Inspire Mode */
+@media (max-width: 768px) {
+    body:not(.dark-theme) .nav-menu {
+        background-color: rgba(255, 255, 255, 0.98) !important;
+    }
+    
+    body:not(.dark-theme) .nav-menu a {
+        color: var(--dark) !important;
+    }
+    
+    body:not(.dark-theme) .nav-menu a:hover {
+        background-color: rgba(233, 30, 99, 0.1) !important;
+        color: var(--primary) !important;
+    }
+    
+    body:not(.dark-theme) .nav-menu a.active {
+        background-color: var(--primary) !important;
+        color: white !important;
+    }
+}
+/* === CRITICAL FIX FOR Touch the heart MENU VISIBILITY === */
+
+/* Đảm bảo gravity wave và shooting stars KHÔNG đè lên menu */
+.gravity-wave,
+.shooting-stars {
+    z-index: 9990 !important; /* Thấp hơn menu */
+}
+
+/* Tăng z-index cho mobile menu trong Touch the heart */
+.dark-theme .nav-menu {
+    z-index: 10000 !important; /* Cao nhất */
+    background-color: rgba(17, 34, 64, 0.98) !important;
+    backdrop-filter: blur(15px) !important;
+}
+
+/* Đảm bảo menu item hiển thị đầy đủ */
+.dark-theme .nav-menu li {
+    opacity: 1 !important;
+    transform: none !important;
+    transition-delay: 0s !important;
+}
+
+/* Fix text visibility trong Touch the heart - LOẠI BỎ TEXT SHADOW */
+.dark-theme .nav-menu a {
+    color: #ffffff !important;
+    text-shadow: none !important;
+    background-color: transparent !important;
+}
+
+.dark-theme .nav-menu a:hover {
+    color: #00d4ff !important;
+    background-color: rgba(0, 212, 255, 0.15) !important;
+}
+
+.dark-theme .nav-menu a.active {
+    color: #0a192f !important;
+    background-color: #00d4ff !important;
+    font-weight: 600 !important;
+}
+
+/* QUAN TRỌNG: Fix overflow cho mobile menu */
+@media (max-width: 768px) {
+    .nav-menu.active {
+        max-height: 400px !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+    }
+    
+    /* Đảm bảo text không bị cắt */
+    .nav-menu a {
+        white-space: normal !important;
+        word-wrap: break-word !important;
+        overflow: visible !important;
+        text-overflow: clip !important;
+    }
+    
+    /* Specific fix cho Touch the heart mobile - LOẠI BỎ VIỀN ĐẬM */
+    .dark-theme .nav-menu.active {
+        border: 1px solid rgba(0, 212, 255, 0.15) !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+    }
+}
+
+/* Fix transition khi chuyển đổi theme */
+.nav-menu,
+.nav-menu * {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Clear animation delays khi menu active */
+.nav-menu.active li {
+    transition-delay: 0s !important;
+    animation: none !important;
+}
+
+/* === BỔ SUNG FIX CHO MOBILE MENU TRIGGER === */
+.mobile-menu {
+    z-index: 10001 !important; /* Cao hơn menu */
+    position: relative;
+}
+
+/* Fix cho menu khi đang mở và chuyển theme */
+.nav-menu.active {
+    display: flex !important;
+    visibility: visible !important;
+}
+
+/* Force show menu items */
+.nav-menu.active li {
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+}
+
+/* Specific timing fix */
+.nav-menu.active li:nth-child(1) { transition-delay: 0.05s !important; }
+.nav-menu.active li:nth-child(2) { transition-delay: 0.1s !important; }
+.nav-menu.active li:nth-child(3) { transition-delay: 0.15s !important; }
+.nav-menu.active li:nth-child(4) { transition-delay: 0.2s !important; }
+.nav-menu.active li:nth-child(5) { transition-delay: 0.25s !important; }
+
+/* === FIX TEXT COLOR SWITCHING === */
+body:not(.dark-theme) .nav-menu a {
+    color: #333 !important;
+}
+
+body:not(.dark-theme) .nav-menu a:hover {
+    color: #e91e63 !important;
+}
+
+body:not(.dark-theme) .nav-menu a.active {
+    color: white !important;
+    background-color: #e91e63 !important;
+}
+/* === SOUND BUTTON STYLES === */
+.sound-button {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sound-button:hover {
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: var(--shadow-lg);
+}
+
+.sound-button.muted {
+    background: linear-gradient(135deg, #666 0%, #999 100%);
+}
+
+.sound-button.muted:hover {
+    background: linear-gradient(135deg, #777 0%, #aaa 100%);
+}
+
+/* Trong Touch the heart */
+.dark-theme .sound-button {
+    background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark-theme .sound-button:hover {
+    background: linear-gradient(135deg, #0099cc 0%, #00d4ff 100%);
+}
+
+.dark-theme .sound-button.muted {
+    background: linear-gradient(135deg, #555 0%, #777 100%);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sound-button {
+        bottom: 90px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+}
+/* === SOUND BUTTON IMPROVEMENT === */
+.sound-button {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.sound-button:hover {
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: var(--shadow-lg);
+}
+
+.sound-button.muted {
+    background: linear-gradient(135deg, #666 0%, #999 100%);
+}
+
+.sound-button.muted:hover {
+    background: linear-gradient(135deg, #777 0%, #aaa 100%);
+}
+
+/* Trong Touch the heart */
+.dark-theme .sound-button {
+    background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark-theme .sound-button:hover {
+    background: linear-gradient(135deg, #0099cc 0%, #00d4ff 100%);
+}
+
+.dark-theme .sound-button.muted {
+    background: linear-gradient(135deg, #555 0%, #777 100%);
+}
+
+/* Magic Button improvements for mobile */
+.magic-button {
+    position: relative;
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 50px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 6px 20px rgba(106, 17, 203, 0.3);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+/* Touch the heart button style */
+.magic-button.touch-heart-mode {
+    background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%) !important;
+    border: 2px solid rgba(0, 212, 255, 0.4) !important;
+    box-shadow: 0 6px 20px rgba(0, 212, 255, 0.3) !important;
+}
+
+.magic-button.touch-heart-mode span {
+    color: #ffffff !important;
+    text-shadow: none !important;
+}
+
+/* Ensure button text is always visible */
+.magic-button span {
+    position: relative;
+    z-index: 2;
+    transition: color 0.3s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sound-button {
+        bottom: 90px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+    
+    .magic-button {
+        padding: 12px 20px;
+        font-size: 0.95rem;
+        gap: 8px;
+    }
+    
+    /* Mobile touch improvements */
+    .magic-button:active,
+    .sound-button:active {
+        transform: scale(0.95);
+    }
+}
+
+@media (max-width: 480px) {
+    .magic-button {
+        padding: 10px 18px;
+        font-size: 0.9rem;
+    }
+    
+    .magic-button span {
+        font-size: 0.9rem;
+    }
+}
+
+/* Audio elements should be hidden */
+audio {
+    display: none;
+}
+
+/* === IMPROVED SOUND TOGGLE === */
+.sound-button {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    box-shadow: var(--shadow);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+.sound-button:hover {
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: var(--shadow-lg);
+}
+
+.sound-button.muted {
+    background: linear-gradient(135deg, #666 0%, #999 100%);
+}
+
+.sound-button.muted:hover {
+    background: linear-gradient(135deg, #777 0%, #aaa 100%);
+}
+
+/* Touch the heart */
+.dark-theme .sound-button {
+    background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark-theme .sound-button:hover {
+    background: linear-gradient(135deg, #0099cc 0%, #00d4ff 100%);
+}
+
+.dark-theme .sound-button.muted {
+    background: linear-gradient(135deg, #555 0%, #777 100%);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .sound-button {
+        bottom: 90px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+}
+
+/* === SMOOTH THEME TRANSITION === */
+body, 
+body *:not(.gravity-wave):not(.shooting-stars):not(.star):not(.wave) {
+    transition: 
+        background-color 0.5s ease,
+        color 0.5s ease,
+        border-color 0.5s ease,
+        box-shadow 0.5s ease,
+        transform 0.3s ease !important;
+}
+
+/* Fast transition for interactive elements */
+.magic-button,
+.sound-button,
+.btn-primary,
+.btn-secondary,
+.btn-cta {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+/* Thêm vào cuối file style.css */
+.magic-button.touch-heart-mode {
+    background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%) !important;
+    border: 2px solid rgba(0, 212, 255, 0.4) !important;
+    box-shadow: 0 6px 20px rgba(0, 212, 255, 0.3) !important;
+}
+
+.magic-button.touch-heart-mode span {
+    color: #ffffff !important;
+    text-shadow: none !important;
+}
+
+.magic-button.touch-heart-mode:hover {
+    background: linear-gradient(135deg, #0099cc 0%, #00d4ff 100%) !important;
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.5) !important;
+}
+
+.magic-button.touch-heart-mode i {
+    color: #ffffff !important;
+}
+/* === ADDITIONAL ROUNDED CORNERS FIXES === */
+
+/* Select dropdown styling */
+.contact-form select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 16px;
+    padding-right: 45px !important;
+    border-radius: 12px !important;
+}
+
+/* Dark theme select */
+.dark-theme .contact-form select {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300d4ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    border-radius: 12px !important;
+}
+
+/* Textarea specific */
+.contact-form textarea {
+    resize: vertical;
+    min-height: 120px;
+    border-radius: 12px !important;
+}
+
+/* Form submit button */
+.contact-form button[type="submit"] {
+    border-radius: 12px !important;
+}
+
+/* Ensure all buttons have consistent rounded corners */
+.btn-primary,
+.btn-secondary,
+.btn-cta {
+    border-radius: 12px !important;
+}
+
+/* Soften card corners slightly */
+.welcome-card,
+.expertise-card,
+.blog-card {
+    border-radius: 20px !important;
+}
+
+/* === FIX CHO SUBMIT BUTTON VÀ FORM === */
+.dark-theme .contact-form button[type="submit"] {
+    border-radius: 12px !important;
+    background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%) !important;
+    color: #0a192f !important;
+    font-weight: 600 !important;
+    border: none !important;
+    padding: 15px 30px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    margin-top: 10px !important;
+}
+
+.dark-theme .contact-form button[type="submit"]:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 25px rgba(0, 212, 255, 0.3) !important;
+}
+
+/* Đảm bảo contact content không có viền */
+.dark-theme .contact-content {
+    gap: 60px !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+/* Responsive cho mobile */
+@media (max-width: 768px) {
+    .dark-theme .contact-form {
+        padding: 20px !important;
+        border-radius: 16px !important;
+    }
+    
+    .dark-theme .contact-content {
+        gap: 40px !important;
+    }
+}
+
+/* CẢI THIỆN CHO LIGHT THEME (Inspire Mode) */
+/* Form trong light theme - BO GÓC */
+.contact-form {
+    border-radius: 20px !important;
+    padding: 30px !important;
+    background-color: var(--white) !important;
+    box-shadow: var(--shadow) !important;
+    border: 1px solid var(--light-gray) !important;
+}
+
+/* Contact info trong light theme - KHÔNG VIỀN */
+.contact-info {
+    background-color: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+.logo a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.logo a:hover h1 {
+    color: var(--primary);
+}
+
+/* Logo clickable styles */
+.clickable-logo {
+    cursor: pointer;
+    user-select: none; /* Ngăn người dùng select text */
+    -webkit-tap-highlight-color: transparent; /* Loại bỏ highlight màu xanh trên mobile */
+}
+
+.clickable-logo:hover h1 {
+    color: var(--primary); /* Đổi màu tên khi hover */
+}
+
+/* Touch the heart mode */
+.dark-theme .clickable-logo:hover h1 {
+    color: #00d4ff !important; /* Màu cyan trong Touch the heart */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .clickable-logo {
+        padding: 5px 0; /* Thêm padding cho dễ click */
+    }
+    
+    .clickable-logo:active {
+        transform: scale(0.98);
+        opacity: 0.8;
+    }
+}
+
+/* === XÓA HOÀN TOÀN GẠCH DƯỚI MENU === */
+.nav-menu a::after {
+    display: none !important;
+}
+
+.nav-menu a {
+    text-decoration: none !important;
+}
+
+/* Đảm bảo không có border-bottom nào */
+.nav-menu a,
+.nav-menu a:hover,
+.nav-menu a:active,
+.nav-menu a:focus {
+    border-bottom: none !important;
+    text-decoration: none !important;
+}
+
+/* Mobile menu cũng cần fix */
+@media (max-width: 768px) {
+    .nav-menu a::after {
+        display: none !important;
+    }
+}

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nguyễn Đức Hải - Ngoại tuyến</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .offline-container {
+            max-width: 500px;
+            width: 100%;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            border-left: 5px solid #e91e63;
+        }
+        
+        .offline-icon {
+            font-size: 4rem;
+            color: #e91e63;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #e91e63;
+            margin-bottom: 15px;
+        }
+        
+        p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+            color: #666;
+        }
+        
+        .actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 140px;
+        }
+        
+        .primary-btn {
+            background: #e91e63;
+            color: white;
+        }
+        
+        .secondary-btn {
+            background: transparent;
+            color: #e91e63;
+            border: 2px solid #e91e63;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .status {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            color: #888;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        @media (max-width: 480px) {
+            .offline-container {
+                padding: 25px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .actions {
+                flex-direction: column;
+            }
+            
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <div class="offline-icon">
+            <i class="fas fa-wifi-slash"></i>
+        </div>
+        
+        <h1>Bạn đang ngoại tuyến</h1>
+        
+        <p>Xin lỗi, trang web hiện không thể kết nối đến internet. Vui lòng kiểm tra:</p>
+        
+        <ul style="text-align: left; margin: 20px 0; padding-left: 20px;">
+            <li>Kết nối WiFi hoặc dữ liệu di động</li>
+            <li>Chế độ máy bay đã tắt</li>
+            <li>Tín hiệu mạng ổn định</li>
+        </ul>
+        
+        <p>Một số tính năng có thể không khả dụng khi ngoại tuyến.</p>
+        
+        <div class="actions">
+            <button class="primary-btn" onclick="window.location.reload()">
+                <i class="fas fa-redo"></i> Thử lại
+            </button>
+            
+            <button class="secondary-btn" onclick="history.back()">
+                <i class="fas fa-arrow-left"></i> Quay lại
+            </button>
+        </div>
+        
+        <div class="status">
+            <p><i class="fas fa-info-circle"></i> Trang web này có thể hoạt động offline với tính năng hạn chế.</p>
+        </div>
+    </div>
+    
+    <script>
+        // Check connection status periodically
+        function checkConnection() {
+            if (navigator.onLine) {
+                // If connection restored, reload after 3 seconds
+                setTimeout(() => {
+                    window.location.reload();
+                }, 3000);
+            }
+        }
+        
+        // Check every 5 seconds
+        setInterval(checkConnection, 5000);
+        
+        // Also listen for online event
+        window.addEventListener('online', checkConnection);
+        
+        // Store last visited page for return
+        if (sessionStorage) {
+            if (!sessionStorage.getItem('lastVisited')) {
+                sessionStorage.setItem('lastVisited', document.referrer || '/');
+            }
+        }
+    </script>
+</body>
+</html>

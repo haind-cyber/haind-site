@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+	<!-- Thêm vào head -->
+	<link rel="manifest" href="/manifest.json">
+	<meta name="application-name" content="Nguyễn Đức Hải">
+	<meta name="apple-mobile-web-app-title" content="Nguyễn Đức Hải">
+	<meta name="msapplication-TileColor" content="#e91e63">
+
+	<!-- Apple Touch Icons -->
+	<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/images/icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/icon-180x180.png">
+	<link rel="apple-touch-icon" sizes="167x167" href="/images/icon-167x167.png">
+
+	<!-- Microsoft Tile -->
+	<meta name="msapplication-square70x70logo" content="/images/icon-70x70.png">
+	<meta name="msapplication-square150x150logo" content="/images/icon-150x150.png">
+	<meta name="msapplication-wide310x150logo" content="/images/icon-310x150.png">
+	<meta name="msapplication-square310x310logo" content="/images/icon-310x310.png">
+    <meta charset="UTF-8">
+    <meta name="theme-color" content="#e91e63" id="themeColor">
+    <meta name="theme-color" content="#0a192f" media="(prefers-color-scheme: dark)">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- Audio elements với preload -->
+    <audio id="magicSound" preload="auto" crossorigin="anonymous">
+        <source src="audio/one-love.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <audio id="cosmicSound" preload="auto" crossorigin="anonymous">
+        <source src="audio/cosmic-ambient.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>    
+    <!-- Thêm ngay sau <meta charset="UTF-8"> -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nguyễn Đức Hải - MC Tiệc Cưới & Chuyên gia Sinh Trắc Học Vân Tay</title>
+    
+    <!-- Meta tags for SEO -->
+    <meta name="description" content="Nguyễn Đức Hải - MC tiệc cưới chuyên nghiệp, tư vấn Sinh trắc vân tay và chiến lược đầu tư. Kết nối công nghệ và con người.">
+    <meta name="keywords" content="Nguyễn Đức Hải, MC tiệc cưới, Sinh trắc vân tay, Tư vấn đầu tư, CNTT">
+    <meta name="author" content="Nguyễn Đức Hải">
+    
+    <!-- Open Graph for social media -->
+    <meta property="og:title" content="Nguyễn Đức Hải - MC Tiệc Cưới & Chuyên gia Sinh Trắc Học Vân Tay">
+    <meta property="og:description" content="MC tiệc cưới chuyên nghiệp, tư vấn Sinh trắc vân tay và chiến lược đầu tư.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.nguyenduchai.me">
+    <!-- Add your image URL when ready: <meta property="og:image" content="https://www.nguyenduchai.me/images/cover.jpg"> -->
+    
+    <!-- Favicon (add your favicon later) -->
+    <!-- <link rel="icon" type="image/x-icon" href="/favicon.ico"> -->
+    <!-- Preload critical resources -->
+    <link rel="preload" href="style.css" as="style">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css?v=1.2">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Noto+Serif+JP:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <nav class="container">
+            <!-- THÊM ONCLICK VÀO DIV LOGO -->
+            <div class="logo" onclick="window.location.href='#home'">
+                <h1>Nguyễn Đức Hải</h1>
+                <span class="tagline">Kết Nối Trái Tim & Khơi Dậy Tài Năng</span>
+            </div>
+			<!-- NÚT MENU MOBILE -->
+			<div class="mobile-menu">
+				<i class="fas fa-bars"></i>
+			</div>			
+            <ul class="nav-menu">
+                <li><a href="#home">Trang chủ</a></li>
+                <li><a href="#mc-section">MC Tiệc Cưới</a></li>
+                <li><a href="#expertise">Chuyên Môn</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Liên hệ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Welcome Section -->
+    <section id="home" class="welcome-section">
+        <div class="container">
+            <div class="welcome-controls">
+                <button id="themeToggle" class="magic-button">
+                    <i class="fas fa-magic"></i>
+                    <span>Inspire Mode</span>
+                    <div class="sparkle"></div>
+                </button>
+            </div>
+            
+            <div class="welcome-card">
+                <h2 class="welcome-title">Chào bạn, tôi là Nguyễn Đức Hải!</h2>
+                <div class="welcome-content">
+                    <p class="welcome-text">
+                        Chào mừng bạn đã ghé thăm không gian số của tôi tại <strong class="highlight">nguyenduchai.me</strong>.
+                    </p>
+                    <p class="welcome-text">
+                        Dù bạn là người bạn trên mạng xã hội hay đối tác lâu năm chủ động tìm đến đây, hay một vị khách tình cờ ghé qua vì sự trùng hợp thú vị của cái tên – tôi đều trân trọng mối duyên này.. Tôi là Nguyễn Đức Hải – một người dành hơn 12 năm để giải mã những hệ thống CNTT phức tạp, và chương tiếp theo của cuộc đời tôi sẽ kết nối những trái tim trong vai trò MC tiệc cưới.
+                    </p>
+                    <p class="welcome-text">
+                        Tại đây, bạn sẽ thấy một Nguyễn Đức Hải không chỉ là chuyên gia công nghệ, mà còn là một người kể chuyện hạnh phúc. Sau nhiều năm đóng góp trong môi trường tập đoàn, tôi chọn hành trình này để mang những giá trị thực chứng từ Sinh trắc vân tay và tư duy khởi nghiệp đến với cộng đồng.
+                    </p>
+                    <p class="welcome-text">
+                        Dù bạn ghé thăm vì tò mò hay vì công việc, hy vọng bạn sẽ tìm thấy một điều gì đó tích cực tại đây!
+                    </p>
+                    <div class="signature">
+                        <p>Trân trọng,</p>
+                        <h3 class="signature-name">Nguyễn Đức Hải</h3>
+                        <p class="signature-title">MC Tiệc cưới Chuyên nghiệp & Khơi Dậy Tài Năng</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MC Section (50% of homepage) -->
+    <section id="mc-section" class="mc-section">
+        <div class="container">
+            <h2 class="section-title">MC Tiệc Cưới</h2>
+            
+            <!-- MC Banner -->
+            <div class="mc-banner">
+                <!-- Ảnh MC thật -->
+                <img src="images/mc-banner.png" alt="Nguyễn Đức Hải - MC Tiệc Cưới Chuyên Nghiệp" class="mc-banner-image">
+                <div class="banner-overlay">
+                    <h2 class="mc-slogan">Nguyễn Đức Hải - Người dẫn lối cảm xúc, kết nối hạnh phúc</h2>
+                    <a href="#contact" class="btn-cta">Đặt lịch MC</a>
+                </div>
+            </div>
+            
+            <!-- MC Video -->
+            <div class="mc-video-section">
+                <h3>Khoảnh Khắc Xúc Động Trên Sân Khấu</h3>
+                <div class="video-container">
+                    <!-- Video YouTube Embed -->
+                    <div class="video-embed">
+                        <iframe 
+                            width="100%" 
+                            height="315" 
+                            src="https://www.youtube.com/embed/F1oAjDZyj4c" 
+                            title="Video MC Nguyễn Đức Hải" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-description">
+                        <p>Mỗi đám cưới là một câu chuyện tình yêu độc đáo. Với vai trò MC, tôi không chỉ dẫn dắt chương trình mà còn là người kể chuyện, kết nối những trái tim và tạo nên những khoảnh khắc không thể nào quên.</p>
+                        <div class="mc-highlights">
+                            <div class="highlight-item">
+                                <i class="fas fa-heart"></i>
+                                <span>Kết nối cảm xúc</span>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="fas fa-comments"></i>
+                                <span>Lời dẫn truyền cảm</span>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="fas fa-users"></i>
+                                <span>Điều phối chuyên nghiệp</span>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="fas fa-music"></i>
+                                <span>Âm nhạc đúng thời điểm</span>
+                            </div>
+                        </div>
+                        <a href="https://www.youtube.com/@nguyenduchai6829" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+                            Xem thêm video <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Other Expertise Section (50% of homepage) -->
+    <section id="expertise" class="expertise-section">
+        <div class="container">
+            <h2 class="section-title">Chuyên Môn Đa Lĩnh Vực</h2>
+            <div class="expertise-grid">
+                <!-- IT Expertise -->
+                <div class="expertise-card it-card">
+                    <div class="expertise-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Công Nghệ Thông Tin</h3>
+                    <p>Hơn 12 năm kinh nghiệm trong lĩnh vực CNTT, quản lý hệ thống phức tạp và phát triển giải pháp công nghệ cho doanh nghiệp lớn.</p>
+                    <ul class="expertise-list">
+                        <li><i class="fas fa-check"></i> Quản trị hệ thống</li>
+                        <li><i class="fas fa-check"></i> Phát triển giải pháp</li>
+                        <li><i class="fas fa-check"></i> Tư vấn chuyển đổi số</li>
+                        <li><i class="fas fa-check"></i> Bảo mật thông tin</li>
+                    </ul>
+                </div>
+                
+                <!-- Sinh Trắc Học -->
+                <div class="expertise-card biometric-card">
+                    <div class="expertise-icon">
+                        <i class="fas fa-fingerprint"></i>
+                    </div>
+                    <h3>Sinh Trắc Vân Tay</h3>
+                    <p>Ứng dụng sinh trắc học để khám phá tiềm năng bẩm sinh, định hướng phát triển cá nhân và xây dựng đội nhóm hiệu quả.</p>
+                    <ul class="expertise-list">
+                        <li><i class="fas fa-check"></i> Phân tích tiềm năng</li>
+                        <li><i class="fas fa-check"></i> Định hướng giáo dục</li>
+                        <li><i class="fas fa-check"></i> Phát triển đội nhóm</li>
+                        <li><i class="fas fa-check"></i> Tư vấn nghề nghiệp</li>
+                    </ul>
+                </div>
+                
+                <!-- Đầu Tư -->
+                <div class="expertise-card investment-card">
+                    <div class="expertise-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Tư Vấn Đầu Tư</h3>
+                    <p>Chia sẻ kinh nghiệm và tư vấn chiến lược đầu tư thông minh, quản lý tài chính cá nhân và doanh nghiệp hiệu quả.</p>
+                    <ul class="expertise-list">
+                        <li><i class="fas fa-check"></i> Chiến lược đầu tư</li>
+                        <li><i class="fas fa-check"></i> Quản trị tài chính</li>
+                        <li><i class="fas fa-check"></i> Tư duy khởi nghiệp</li>
+                        <li><i class="fas fa-check"></i> Phân tích thị trường</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="blog-section">
+        <div class="container">
+            <h2 class="section-title">Bài Viết Mới Nhất</h2>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-category mc-category">MC</div>
+                    <h3>Nghệ Thuật Dẫn Dắt Cảm Xúc Trong Tiệc Cưới</h3>
+                    <p>Khám phá bí quyết tạo nên những khoảnh khắc đáng nhớ thông qua lời dẫn truyền cảm và kỹ năng điều phối chuyên nghiệp.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar"></i> 15/11/2023</span>
+                        <span><i class="far fa-clock"></i> 5 phút đọc</span>
+                    </div>
+                    <a href="#" class="read-more">Đọc tiếp →</a>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-category it-category">CNTT</div>
+                    <h3>Chuyển Đổi Số Cho Doanh Nghiệp Nhỏ</h3>
+                    <p>Hướng dẫn thực tế về cách áp dụng công nghệ để tối ưu hóa vận hành và phát triển doanh nghiệp trong thời đại số.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar"></i> 10/11/2023</span>
+                        <span><i class="far fa-clock"></i> 7 phút đọc</span>
+                    </div>
+                    <a href="#" class="read-more">Đọc tiếp →</a>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-category bio-category">Sinh Trắc</div>
+                    <h3>Hiểu Bản Thân Qua Sinh Trắc Vân Tay</h3>
+                    <p>Khám phá cách sinh trắc học giúp bạn nhận diện điểm mạnh bẩm sinh và định hướng phát triển sự nghiệp phù hợp.</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar"></i> 05/11/2023</span>
+                        <span><i class="far fa-clock"></i> 6 phút đọc</span>
+                    </div>
+                    <a href="#" class="read-more">Đọc tiếp →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Kết Nối Với Tôi</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Hãy cùng tạo nên những điều ý nghĩa</h3>
+                    <p>Dù bạn cần một MC cho ngày trọng đại, tư vấn về công nghệ, hay khám phá tiềm năng bản thân, tôi luôn sẵn sàng lắng nghe và hỗ trợ.</p>
+                    
+                    <div class="contact-details">
+                        <p><i class="fas fa-envelope"></i> contact@nguyenduchai.me</p>
+                        <p><i class="fas fa-phone"></i> 0868761096</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Hà Nội, Việt Nam</p>
+                    </div>
+                    
+                    <div class="social-links">
+                        <h4>Theo dõi tôi</h4>
+                        <div class="social-icons">
+                            <a href="https://facebook.com/hai.duc.718" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
+                            <a href="https://youtube.com/@nguyenduchai6829" aria-label="YouTube" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+                            <a href="https://tiktok.com/@hainguyenduc.official" aria-label="TikTok" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
+                            <a href="https://linkedin.com/in/hai-nguyen-duc-1a6b5563" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://instagram.com/hai.duc.718" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+					<form id="contactForm" action="https://formspree.io/f/mykdydko" method="POST">
+						<!-- Hidden fields cho Formspree -->
+						<input type="hidden" name="_next" value="https://nguyenduchai.github.io/thank-you.html">
+						<input type="hidden" name="_subject" value="📩 Liên hệ từ website nguyenduchai.me">
+						<input type="hidden" name="_language" value="vi">
+						
+						<!-- Các field hiện tại - THÊM NAME ATTRIBUTE -->
+						<input type="text" name="name" placeholder="Họ và tên" required>
+						<input type="email" name="email" placeholder="Email" required>
+						<select name="interest" required>
+							<option value="" disabled selected>Lĩnh vực quan tâm</option>
+							<option value="mc">MC Tiệc Cưới</option>
+							<option value="it">Tư vấn CNTT</option>
+							<option value="biometric">Sinh Trắc Vân Tay</option>
+							<option value="investment">Tư vấn Đầu tư</option>
+							<option value="other">Khác</option>
+						</select>
+						<textarea name="message" placeholder="Nội dung tin nhắn" rows="4" required></textarea>
+						
+						<button type="submit" class="btn-primary">Gửi tin nhắn</button>
+						
+						<!-- Chống spam -->
+						<input type="text" name="_gotcha" style="display:none;">
+					</form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Nguyễn Đức Hải</h2>
+                    <p>Kết nối công nghệ và con người</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Liên kết nhanh</h4>
+                    <a href="#home">Trang chủ</a>
+                    <a href="#mc-section">MC Tiệc Cưới</a>
+                    <a href="#expertise">Chuyên Môn</a>
+                    <a href="#blog">Blog</a>
+                    <a href="#contact">Liên hệ</a>
+                </div>
+                <div class="footer-contact">
+                    <h4>Thông tin liên hệ</h4>
+                    <p><i class="fas fa-envelope"></i> contact@nguyenduchai.me</p>
+                    <p><i class="fas fa-phone"></i> 0868761096</p>
+                    <p><i class="fas fa-globe"></i> nguyenduchai.me</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Nguyễn Đức Hải. All rights reserved.</p>
+                <p class="powered-by">Powered by GitHub Pages</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" aria-label="Quay lại đầu trang">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="script.js?v=1.2"></script>
+    
+    <!-- Smooth scroll polyfill for older browsers -->
+    <script>
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Back to top button
+    const backToTopBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTopBtn.style.display = 'block';
+        } else {
+            backToTopBtn.style.display = 'none';
+        }
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    </script>
+    <!-- Nút điều khiển âm thanh -->
+    <!-- <button id="soundToggle" class="sound-button" aria-label="Bật/tắt âm thanh" title="Bật/tắt âm thanh">
+        <i class="fas fa-volume-up"></i>
+    </button> -->
+
+    <!-- Bằng nút thực: -->
+    <button id="soundToggle" class="sound-button" aria-label="Bật/tắt âm thanh" title="Bật/tắt âm thanh">
+        <i class="fas fa-volume-up"></i>
+    </button> 
+	<!-- Thêm vào cuối body, trước </body> -->
+	<script>
+		// Service Worker Registration với fallback
+		if ('serviceWorker' in navigator) {
+			window.addEventListener('load', function() {
+				// Check if SW is already registered
+				navigator.serviceWorker.getRegistration()
+					.then(registration => {
+						if (!registration) {
+							// Register new Service Worker
+							navigator.serviceWorker.register('/service-worker.js')
+								.then(function(registration) {
+									console.log('✅ ServiceWorker registered with scope:', registration.scope);
+									
+									// Check for updates
+									registration.update();
+									
+									// Send health check
+									if (registration.active) {
+										registration.active.postMessage({
+											type: 'HEALTH_CHECK'
+										});
+									}
+								})
+								.catch(function(error) {
+									console.log('❌ ServiceWorker registration failed:', error);
+									
+									// Fallback: try without scope
+									if (error.message.includes('scope')) {
+										navigator.serviceWorker.register('service-worker.js')
+											.then(reg => console.log('✅ ServiceWorker registered (fallback)'))
+											.catch(err => console.log('❌ Fallback also failed:', err));
+									}
+								});
+						} else {
+							console.log('✅ ServiceWorker already registered');
+							
+							// Force update
+							registration.update();
+						}
+					});
+			});
+			
+			// Handle controller change
+			navigator.serviceWorker.addEventListener('controllerchange', function() {
+				console.log('🔄 Service Worker controller changed');
+				window.location.reload();
+			});
+			
+			// Listen for messages from Service Worker
+			navigator.serviceWorker.addEventListener('message', function(event) {
+				if (event.data && event.data.type === 'HEALTH_CHECK_RESPONSE') {
+					console.log('❤️ Service Worker health:', event.data.status);
+				}
+			});
+		} else {
+			console.log('❌ Service Worker not supported');
+		}
+		
+		// Offline detection
+		window.addEventListener('offline', function() {
+			console.log('📴 You are offline');
+			showOfflineNotification();
+		});
+		
+		window.addEventListener('online', function() {
+			console.log('📶 You are back online');
+			showOnlineNotification();
+		});
+		
+		function showOfflineNotification() {
+			// Show subtle notification
+			const notification = document.createElement('div');
+			notification.innerHTML = '<i class="fas fa-wifi-slash"></i> Bạn đang ngoại tuyến';
+			notification.style.cssText = `
+				position: fixed;
+				top: 20px;
+				right: 20px;
+				background: #ff6b6b;
+				color: white;
+				padding: 10px 20px;
+				border-radius: 5px;
+				z-index: 10000;
+				font-family: 'Inter', sans-serif;
+				animation: slideIn 0.3s ease;
+			`;
+			document.body.appendChild(notification);
+			
+			setTimeout(() => {
+				notification.style.animation = 'slideOut 0.3s ease';
+				setTimeout(() => notification.remove(), 300);
+			}, 3000);
+		}
+		
+		function showOnlineNotification() {
+			const notification = document.createElement('div');
+			notification.innerHTML = '<i class="fas fa-wifi"></i> Đã kết nối lại';
+			notification.style.cssText = `
+				position: fixed;
+				top: 20px;
+				right: 20px;
+				background: #4CAF50;
+				color: white;
+				padding: 10px 20px;
+				border-radius: 5px;
+				z-index: 10000;
+				font-family: 'Inter', sans-serif;
+				animation: slideIn 0.3s ease;
+			`;
+			document.body.appendChild(notification);
+			
+			setTimeout(() => {
+				notification.style.animation = 'slideOut 0.3s ease';
+				setTimeout(() => notification.remove(), 300);
+			}, 2000);
+		}
+		
+		// Add animation styles
+		const style = document.createElement('style');
+		style.textContent = `
+			@keyframes slideIn {
+				from { transform: translateX(100%); opacity: 0; }
+				to { transform: translateX(0); opacity: 1; }
+			}
+			@keyframes slideOut {
+				from { transform: translateX(0); opacity: 1; }
+				to { transform: translateX(100%); opacity: 0; }
+			}
+		`;
+		document.head.appendChild(style);
+	</script>	
+</body>
+</html>
