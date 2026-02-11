@@ -2576,7 +2576,7 @@ body *:not(.gravity-wave):not(.shooting-stars):not(.star):not(.wave) {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #0068ff 0%, #0051d4 100%);
+    background: white; /* Nền trắng cho SVG có màu xanh */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2587,15 +2587,15 @@ body *:not(.gravity-wave):not(.shooting-stars):not(.star):not(.wave) {
     visibility: hidden;
     transform: translateY(20px) scale(0.8);
     text-decoration: none;
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    border: 3px solid #0068ff; /* Viền xanh Zalo */
     overflow: hidden;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
 }
 
 .zalo-floating-button svg {
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
     transition: transform 0.3s ease;
 }
 
@@ -2608,24 +2608,79 @@ body *:not(.gravity-wave):not(.shooting-stars):not(.star):not(.wave) {
 .zalo-floating-button:hover {
     transform: translateY(-5px) scale(1.1);
     box-shadow: 0 10px 30px rgba(0, 104, 255, 0.4);
-    background: linear-gradient(135deg, #0051d4 0%, #0068ff 100%);
+    background: #0068ff; /* Nền xanh khi hover */
+    border-color: white;
 }
 
 .zalo-floating-button:hover svg {
     transform: scale(1.1);
+    filter: brightness(0) invert(1); /* Đổi icon thành trắng khi hover */
 }
 
-/* Pulse animation effect */
-.zalo-floating-button::before {
+/* Dark theme support */
+.dark-theme .zalo-floating-button {
+    background: white;
+    border-color: #0068ff;
+    box-shadow: 0 6px 20px rgba(0, 104, 255, 0.4);
+}
+
+.dark-theme .zalo-floating-button:hover {
+    background: #0068ff;
+    border-color: white;
+}
+
+/* Pulse animation */
+.zalo-floating-button::after {
     content: '';
     position: absolute;
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background: inherit;
+    background: #0068ff;
     animation: zaloPulse 2s ease-in-out infinite;
     z-index: -1;
-    opacity: 0.4;
+    opacity: 0.2;
+}
+
+@keyframes zaloPulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.2;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.2;
+    }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .zalo-floating-button {
+        bottom: 140px;
+        right: 20px;
+        width: 55px;
+        height: 55px;
+    }
+    
+    .zalo-floating-button svg {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+/* Ensure proper spacing with other floating buttons */
+.sound-button ~ .zalo-floating-button {
+    bottom: 220px;
+}
+
+@media (max-width: 768px) {
+    .sound-button ~ .zalo-floating-button {
+        bottom: 200px;
+    }
 }
 
 @keyframes zaloPulse {
