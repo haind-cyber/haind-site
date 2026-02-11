@@ -2568,11 +2568,35 @@ body *:not(.gravity-wave):not(.shooting-stars):not(.star):not(.wave) {
     -webkit-tap-highlight-color: transparent;
 }
 
-/* FontAwesome Zalo icon - custom class */
-.fa-zalo {
-    font-family: 'Font Awesome 5 Brands';
-    font-weight: 400;
-    content: "\f262" !important; /* Zalo icon code */
+/* === ZALO FLOATING BUTTON === */
+.zalo-floating-button {
+    position: fixed;
+    bottom: 160px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0068ff 0%, #0051d4 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 20px rgba(0, 104, 255, 0.3);
+    z-index: 999;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px) scale(0.8);
+    text-decoration: none;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.zalo-floating-button svg {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease;
 }
 
 .zalo-floating-button.visible {
@@ -2587,8 +2611,8 @@ body *:not(.gravity-wave):not(.shooting-stars):not(.star):not(.wave) {
     background: linear-gradient(135deg, #0051d4 0%, #0068ff 100%);
 }
 
-.zalo-floating-button:active {
-    transform: translateY(0) scale(0.95);
+.zalo-floating-button:hover svg {
+    transform: scale(1.1);
 }
 
 /* Pulse animation effect */
