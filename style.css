@@ -2749,3 +2749,280 @@ body *:not(.gravity-wave):not(.shooting-stars):not(.star):not(.wave) {
         bottom: 200px;
     }
 }
+
+/* === MAGIC M BUTTON === */
+.m-button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+}
+
+.m-float-button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    animation: mBorderPulse 3s ease-in-out infinite;
+}
+
+.m-float-button span {
+    font-size: 28px;
+    font-weight: 800;
+    color: white;
+    font-family: 'Playfair Display', serif;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.m-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.8) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+    animation: mGlowPulse 2s ease-in-out infinite;
+}
+
+.m-float-button:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 8px 25px rgba(233, 30, 99, 0.5);
+}
+
+.m-float-button:hover .m-glow {
+    opacity: 0.5;
+}
+
+.m-float-button:hover span {
+    transform: scale(1.1);
+}
+
+.m-float-button:active {
+    transform: translateY(0) scale(0.95);
+}
+
+/* Tooltip */
+.m-tooltip {
+    position: absolute;
+    bottom: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 101;
+    font-family: 'Inter', sans-serif;
+}
+
+.m-button-container:hover .m-tooltip {
+    opacity: 1;
+    visibility: visible;
+    bottom: 75px;
+}
+
+/* Animations */
+@keyframes mBorderPulse {
+    0%, 100% {
+        border-color: rgba(233, 30, 99, 0.5);
+        box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+    }
+    25% {
+        border-color: rgba(0, 212, 255, 0.5);
+        box-shadow: 0 4px 20px rgba(0, 212, 255, 0.4);
+    }
+    50% {
+        border-color: rgba(233, 30, 99, 0.8);
+        box-shadow: 0 4px 25px rgba(233, 30, 99, 0.5);
+    }
+    75% {
+        border-color: rgba(0, 212, 255, 0.8);
+        box-shadow: 0 4px 20px rgba(0, 212, 255, 0.4);
+    }
+}
+
+@keyframes mGlowPulse {
+    0%, 100% {
+        opacity: 0.2;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.2);
+    }
+}
+
+/* Dark theme adjustments */
+.dark-theme .m-float-button {
+    background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+    border-color: rgba(255, 255, 255, 0.3);
+    animation: mBorderPulseDark 3s ease-in-out infinite;
+}
+
+@keyframes mBorderPulseDark {
+    0%, 100% {
+        border-color: rgba(0, 212, 255, 0.5);
+        box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+    }
+    25% {
+        border-color: rgba(233, 30, 99, 0.5);
+        box-shadow: 0 4px 20px rgba(233, 30, 99, 0.4);
+    }
+    50% {
+        border-color: rgba(0, 212, 255, 0.8);
+        box-shadow: 0 4px 25px rgba(0, 212, 255, 0.5);
+    }
+    75% {
+        border-color: rgba(233, 30, 99, 0.8);
+        box-shadow: 0 4px 20px rgba(233, 30, 99, 0.4);
+    }
+}
+
+.dark-theme .m-tooltip {
+    background: rgba(0, 212, 255, 0.9);
+    color: #0a192f;
+    font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .m-float-button {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .m-float-button span {
+        font-size: 24px;
+    }
+    
+    .m-tooltip {
+        font-size: 0.7rem;
+        padding: 4px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .m-button-container {
+        margin-top: 20px;
+    }
+    
+    .m-float-button {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .m-float-button span {
+        font-size: 22px;
+    }
+}
+
+/* Footer layout adjustment for M button */
+.footer-content {
+    grid-template-columns: 1fr 1fr 1fr auto !important;
+    align-items: center;
+}
+
+@media (max-width: 992px) {
+    .footer-content {
+        grid-template-columns: 1fr 1fr auto !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr !important;
+        text-align: center;
+    }
+    
+    .m-button-container {
+        margin-top: 30px;
+        align-items: center;
+    }
+}
+
+/* Adjust footer grid for M button */
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr auto;
+    gap: 40px;
+    margin-bottom: 40px;
+    align-items: start;
+}
+
+@media (max-width: 992px) {
+    .footer-content {
+        grid-template-columns: 1fr 1fr auto;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 30px;
+    }
+    
+    .m-button-container {
+        align-items: center;
+        margin-top: 10px;
+    }
+    
+    .footer-links {
+        align-items: center;
+    }
+    
+    .footer-contact {
+        align-items: center;
+    }
+}
+
+/* Fix cho M button trong dark theme */
+.dark-theme .m-float-button {
+    animation: mBorderPulseDark 3s ease-in-out infinite;
+}
+
+/* Hiệu ứng ripple khi click */
+.m-float-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease;
+    z-index: 0;
+}
+
+.m-float-button:active::after {
+    width: 150%;
+    height: 150%;
+    opacity: 0;
+    transition: width 0.5s ease, height 0.5s ease, opacity 0.5s ease;
+}

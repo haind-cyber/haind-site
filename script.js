@@ -996,6 +996,212 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// === MAGIC M BUTTON - AUTO SWITCH THEME ===
+document.addEventListener('DOMContentLoaded', function() {
+    const mButton = document.getElementById('magicMButton');
+    const themeToggle = document.getElementById('themeToggle');
+    let autoSwitchInterval = null;
+    let isAutoSwitching = false;
+    
+    if (mButton) {
+        // Function to toggle theme programmatically
+        function toggleTheme() {
+            if (themeToggle) {
+                // Trigger click event on theme toggle button
+                themeToggle.click();
+            }
+        }
+        
+        // Start auto-switching
+        function startAutoSwitch() {
+            if (autoSwitchInterval) {
+                clearInterval(autoSwitchInterval);
+            }
+            
+            isAutoSwitching = true;
+            
+            // Toggle theme every 3 seconds
+            autoSwitchInterval = setInterval(() => {
+                toggleTheme();
+            }, 3000);
+            
+            // Visual feedback
+            mButton.classList.add('auto-switching');
+            mButton.style.animation = 'mSpin 4s linear infinite';
+            
+            // Show notification
+            showAutoSwitchNotification('🔄 Đã bật chế độ tự động chuyển đổi');
+        }
+        
+        // Stop auto-switching
+        function stopAutoSwitch() {
+            if (autoSwitchInterval) {
+                clearInterval(autoSwitchInterval);
+                autoSwitchInterval = null;
+            }
+            
+            isAutoSwitching = false;
+            
+            // Remove visual feedback
+            mButton.classList.remove('auto-switching');
+            mButton.style.animation = '';
+            
+            // Show notification
+            showAutoSwitchNotification('⏹️ Đã tắt chế độ tự động chuyển đổi');
+        }
+        
+        // Show notification
+        function showAutoSwitchNotification(message) {
+            const notification = document.createElement('div');
+            notification.innerHTML = message;
+            notification.style.cssText = `
+                position: fixed;
+                bottom: 120px;
+                right: 30px;
+                background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+                color: white;
+                padding: 12px 20px;
+                border-radius: 50px;
+                font-family: 'Inter', sans-serif;
+                font-weight: 500;
+                z-index: 10000;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+                animation: slideInRight 0.3s ease;
+                border: 2px solid rgba(255, 255, 255, 0.2);
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 2000);
+        }
+        
+        // Add animation styles
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes mSpin {
+                0% { transform: rotate(0deg) scale(1); }
+                25% { transform: rotate(5deg) scale(1.05); }
+                50% { transform: rotate(0deg) scale(1); }
+                75% { transform: rotate(-5deg) scale(1.05); }
+                100% { transform: rotate(0deg) scale(1); }
+            }
+            
+            @keyframes slideInRight {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes slideOutRight {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+            
+            .m-float-button.auto-switching {
+                box-shadow: 0 0 30px currentColor;
+                transition: all 0.3s ease;
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Click handler
+        mButton.addEventListener('click', function(e) {
+            e.stopPropagation();
+            
+            // Add click animation
+            this.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 200);
+            
+            if (isAutoSwitching) {
+                stopAutoSwitch();
+            } else {
+                startAutoSwitch();
+            }
+            
+            // Track event (optional)
+            console.log('Magic M button clicked. Auto-switching:', isAutoSwitching);
+        });
+        
+        // Check if user scrolls to bottom
+        function checkScrollForMButton() {
+            const scrollPosition = window.scrollY + window.innerHeight;
+            const pageHeight = document.documentElement.scrollHeight;
+            const footer = document.querySelector('footer');
+            
+            if (footer) {
+                const footerTop = footer.offsetTop;
+                const scrollThreshold = footerTop - 100;
+                
+                if (window.scrollY > scrollThreshold) {
+                    mButton.classList.add('visible');
+                } else {
+                    mButton.classList.remove('visible');
+                }
+            }
+        }
+        
+        // Initial check
+        setTimeout(checkScrollForMButton, 500);
+        
+        // Check on scroll
+        window.addEventListener('scroll', checkScrollForMButton);
+        
+        // Stop auto-switching when user manually toggles theme
+        if (themeToggle) {
+            themeToggle.addEventListener('click', function() {
+                if (isAutoSwitching) {
+                    // Optional: Keep auto-switching running or stop it
+                    // Uncomment the next line if you want to stop auto-switch on manual toggle
+                    // stopAutoSwitch();
+                }
+            });
+        }
+        
+        // Clean up on page unload
+        window.addEventListener('beforeunload', function() {
+            if (autoSwitchInterval) {
+                clearInterval(autoSwitchInterval);
+            }
+        });
+    }
+});
+
+// Add visibility class for M button
+const mButtonStyle = document.createElement('style');
+mButtonStyle.textContent = `
+    .m-float-button {
+        opacity: 0.7;
+        transition: opacity 0.3s ease, transform 0.3s ease !important;
+    }
+    
+    .m-float-button.visible {
+        opacity: 1;
+    }
+    
+    @media (max-width: 768px) {
+        .m-float-button {
+            opacity: 0.9;
+        }
+    }
+`;
+document.head.appendChild(mButtonStyle);
+
 // === ERROR HANDLING FOR AUDIO ===
 window.addEventListener('error', function(e) {
     if (e.target.tagName === 'AUDIO') {
