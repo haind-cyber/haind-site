@@ -2750,7 +2750,7 @@ body *:not(.gravity-wave):not(.shooting-stars):not(.star):not(.wave) {
     }
 }
 
-/* === MAGIC M BUTTON === */
+/* === MAGIC M BUTTON - CHỈ HIỆN KHI SCROLL ĐẾN FOOTER === */
 .m-button-container {
     display: flex;
     flex-direction: column;
@@ -2774,7 +2774,16 @@ body *:not(.gravity-wave):not(.shooting-stars):not(.star):not(.wave) {
     align-items: center;
     justify-content: center;
     z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.8) translateY(20px);
     animation: mBorderPulse 3s ease-in-out infinite;
+}
+
+.m-float-button.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1) translateY(0);
 }
 
 .m-float-button span {
@@ -2806,6 +2815,10 @@ body *:not(.gravity-wave):not(.shooting-stars):not(.star):not(.wave) {
     box-shadow: 0 8px 25px rgba(233, 30, 99, 0.5);
 }
 
+.m-float-button.visible:hover {
+    transform: translateY(-5px) scale(1.1);
+}
+
 .m-float-button:hover .m-glow {
     opacity: 0.5;
 }
@@ -2815,6 +2828,10 @@ body *:not(.gravity-wave):not(.shooting-stars):not(.star):not(.wave) {
 }
 
 .m-float-button:active {
+    transform: translateY(0) scale(0.95);
+}
+
+.m-float-button.visible:active {
     transform: translateY(0) scale(0.95);
 }
 
@@ -2844,6 +2861,137 @@ body *:not(.gravity-wave):not(.shooting-stars):not(.star):not(.wave) {
     bottom: 75px;
 }
 
+/* Animations */
+@keyframes mBorderPulse {
+    0%, 100% {
+        border-color: rgba(233, 30, 99, 0.5);
+        box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+    }
+    25% {
+        border-color: rgba(0, 212, 255, 0.5);
+        box-shadow: 0 4px 20px rgba(0, 212, 255, 0.4);
+    }
+    50% {
+        border-color: rgba(233, 30, 99, 0.8);
+        box-shadow: 0 4px 25px rgba(233, 30, 99, 0.5);
+    }
+    75% {
+        border-color: rgba(0, 212, 255, 0.8);
+        box-shadow: 0 4px 20px rgba(0, 212, 255, 0.4);
+    }
+}
+
+@keyframes mGlowPulse {
+    0%, 100% {
+        opacity: 0.2;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.2);
+    }
+}
+
+/* Dark theme adjustments */
+.dark-theme .m-float-button {
+    background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+    border-color: rgba(255, 255, 255, 0.3);
+    animation: mBorderPulseDark 3s ease-in-out infinite;
+}
+
+@keyframes mBorderPulseDark {
+    0%, 100% {
+        border-color: rgba(0, 212, 255, 0.5);
+        box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+    }
+    25% {
+        border-color: rgba(233, 30, 99, 0.5);
+        box-shadow: 0 4px 20px rgba(233, 30, 99, 0.4);
+    }
+    50% {
+        border-color: rgba(0, 212, 255, 0.8);
+        box-shadow: 0 4px 25px rgba(0, 212, 255, 0.5);
+    }
+    75% {
+        border-color: rgba(233, 30, 99, 0.8);
+        box-shadow: 0 4px 20px rgba(233, 30, 99, 0.4);
+    }
+}
+
+.dark-theme .m-tooltip {
+    background: rgba(0, 212, 255, 0.9);
+    color: #0a192f;
+    font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .m-float-button {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .m-float-button span {
+        font-size: 24px;
+    }
+    
+    .m-tooltip {
+        font-size: 0.7rem;
+        padding: 4px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .m-button-container {
+        margin-top: 20px;
+    }
+    
+    .m-float-button {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .m-float-button span {
+        font-size: 22px;
+    }
+}
+
+/* Footer layout adjustment for M button */
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr auto;
+    gap: 40px;
+    margin-bottom: 40px;
+    align-items: start;
+}
+
+@media (max-width: 992px) {
+    .footer-content {
+        grid-template-columns: 1fr 1fr auto;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 30px;
+    }
+    
+    .m-button-container {
+        align-items: center;
+        margin-top: 10px;
+    }
+    
+    .footer-links {
+        align-items: center;
+    }
+    
+    .footer-contact {
+        align-items: center;
+    }
+}
 /* Animations */
 @keyframes mBorderPulse {
     0%, 100% {

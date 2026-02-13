@@ -996,129 +996,63 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// === MAGIC M BUTTON - AUTO SWITCH THEME ===
+// === MAGIC M BUTTON - SIMPLE TOGGLE (CHỈ HIỆN KHI SCROLL ĐẾN FOOTER) ===
 document.addEventListener('DOMContentLoaded', function() {
     const mButton = document.getElementById('magicMButton');
     const themeToggle = document.getElementById('themeToggle');
-    let autoSwitchInterval = null;
-    let isAutoSwitching = false;
     
-    if (mButton) {
-        // Function to toggle theme programmatically
-        function toggleTheme() {
-            if (themeToggle) {
-                // Trigger click event on theme toggle button
-                themeToggle.click();
+    if (mButton && themeToggle) {
+        
+        // Function to check if element is in viewport
+        function isInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+            
+            // Element is considered in viewport when it's near the bottom of the screen
+            return rect.top <= windowHeight && rect.bottom >= 0;
+        }
+        
+        // Function to check if user has scrolled to footer area
+        function checkScrollForMButton() {
+            const footer = document.querySelector('footer');
+            
+            if (footer) {
+                const footerRect = footer.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                // Show button when footer is in viewport or near the bottom
+                // Button appears when footer top is within 200px of viewport bottom
+                const shouldShow = footerRect.top <= windowHeight + 200 && footerRect.bottom >= 0;
+                
+                if (shouldShow) {
+                    mButton.classList.add('visible');
+                } else {
+                    mButton.classList.remove('visible');
+                }
             }
         }
         
-        // Start auto-switching
-        function startAutoSwitch() {
-            if (autoSwitchInterval) {
-                clearInterval(autoSwitchInterval);
-            }
-            
-            isAutoSwitching = true;
-            
-            // Toggle theme every 3 seconds
-            autoSwitchInterval = setInterval(() => {
-                toggleTheme();
-            }, 3000);
-            
-            // Visual feedback
-            mButton.classList.add('auto-switching');
-            mButton.style.animation = 'mSpin 4s linear infinite';
-            
-            // Show notification
-            showAutoSwitchNotification('🔄 Đã bật chế độ tự động chuyển đổi');
-        }
+        // Initial check with delay to ensure DOM is fully loaded
+        setTimeout(checkScrollForMButton, 300);
         
-        // Stop auto-switching
-        function stopAutoSwitch() {
-            if (autoSwitchInterval) {
-                clearInterval(autoSwitchInterval);
-                autoSwitchInterval = null;
+        // Check on scroll with throttling for performance
+        let scrollTimeout;
+        window.addEventListener('scroll', function() {
+            if (scrollTimeout) {
+                window.cancelAnimationFrame(scrollTimeout);
             }
             
-            isAutoSwitching = false;
-            
-            // Remove visual feedback
-            mButton.classList.remove('auto-switching');
-            mButton.style.animation = '';
-            
-            // Show notification
-            showAutoSwitchNotification('⏹️ Đã tắt chế độ tự động chuyển đổi');
-        }
+            scrollTimeout = window.requestAnimationFrame(function() {
+                checkScrollForMButton();
+            });
+        }, { passive: true });
         
-        // Show notification
-        function showAutoSwitchNotification(message) {
-            const notification = document.createElement('div');
-            notification.innerHTML = message;
-            notification.style.cssText = `
-                position: fixed;
-                bottom: 120px;
-                right: 30px;
-                background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-                color: white;
-                padding: 12px 20px;
-                border-radius: 50px;
-                font-family: 'Inter', sans-serif;
-                font-weight: 500;
-                z-index: 10000;
-                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-                animation: slideInRight 0.3s ease;
-                border: 2px solid rgba(255, 255, 255, 0.2);
-            `;
-            
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.style.animation = 'slideOutRight 0.3s ease';
-                setTimeout(() => notification.remove(), 300);
-            }, 2000);
-        }
+        // Check on resize
+        window.addEventListener('resize', function() {
+            checkScrollForMButton();
+        }, { passive: true });
         
-        // Add animation styles
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes mSpin {
-                0% { transform: rotate(0deg) scale(1); }
-                25% { transform: rotate(5deg) scale(1.05); }
-                50% { transform: rotate(0deg) scale(1); }
-                75% { transform: rotate(-5deg) scale(1.05); }
-                100% { transform: rotate(0deg) scale(1); }
-            }
-            
-            @keyframes slideInRight {
-                from {
-                    transform: translateX(100%);
-                    opacity: 0;
-                }
-                to {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
-            }
-            
-            @keyframes slideOutRight {
-                from {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
-                to {
-                    transform: translateX(100%);
-                    opacity: 0;
-                }
-            }
-            
-            .m-float-button.auto-switching {
-                box-shadow: 0 0 30px currentColor;
-                transition: all 0.3s ease;
-            }
-        `;
-        document.head.appendChild(style);
-        
-        // Click handler
+        // Click handler - SIMPLE TOGGLE
         mButton.addEventListener('click', function(e) {
             e.stopPropagation();
             
@@ -1128,60 +1062,73 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.style.transform = '';
             }, 200);
             
-            if (isAutoSwitching) {
-                stopAutoSwitch();
-            } else {
-                startAutoSwitch();
+            // Simply trigger the theme toggle button click
+            // This will toggle between Inspire Mode and Touch the heart
+            themeToggle.click();
+            
+            // Optional: Add haptic feedback for mobile (if supported)
+            if (window.navigator && window.navigator.vibrate) {
+                window.navigator.vibrate(50);
             }
             
             // Track event (optional)
-            console.log('Magic M button clicked. Auto-switching:', isAutoSwitching);
+            console.log('Magic M button clicked - toggling theme');
         });
         
-        // Check if user scrolls to bottom
-        function checkScrollForMButton() {
-            const scrollPosition = window.scrollY + window.innerHeight;
-            const pageHeight = document.documentElement.scrollHeight;
-            const footer = document.querySelector('footer');
-            
-            if (footer) {
-                const footerTop = footer.offsetTop;
-                const scrollThreshold = footerTop - 100;
-                
-                if (window.scrollY > scrollThreshold) {
-                    mButton.classList.add('visible');
+        // Add touch event for mobile
+        mButton.addEventListener('touchstart', function(e) {
+            e.stopPropagation();
+        }, { passive: true });
+        
+        // Update tooltip text based on theme (optional)
+        function updateTooltip() {
+            const tooltip = document.querySelector('.m-tooltip');
+            if (tooltip) {
+                if (document.body.classList.contains('dark-theme')) {
+                    tooltip.textContent = 'Chuyển sang Inspire Mode';
                 } else {
-                    mButton.classList.remove('visible');
+                    tooltip.textContent = 'Chuyển sang Touch the heart';
                 }
             }
         }
         
-        // Initial check
-        setTimeout(checkScrollForMButton, 500);
+        // Update tooltip when theme changes
+        themeToggle.addEventListener('click', function() {
+            setTimeout(updateTooltip, 100);
+        });
         
-        // Check on scroll
-        window.addEventListener('scroll', checkScrollForMButton);
+        // Initial tooltip update
+        setTimeout(updateTooltip, 500);
         
-        // Stop auto-switching when user manually toggles theme
-        if (themeToggle) {
-            themeToggle.addEventListener('click', function() {
-                if (isAutoSwitching) {
-                    // Optional: Keep auto-switching running or stop it
-                    // Uncomment the next line if you want to stop auto-switch on manual toggle
-                    // stopAutoSwitch();
-                }
+        // Show button when user clicks on contact link
+        const contactLinks = document.querySelectorAll('a[href="#contact"]');
+        contactLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                setTimeout(() => {
+                    checkScrollForMButton();
+                }, 1000);
             });
-        }
-        
-        // Clean up on page unload
-        window.addEventListener('beforeunload', function() {
-            if (autoSwitchInterval) {
-                clearInterval(autoSwitchInterval);
-            }
         });
     }
 });
 
+// Add visibility check on page load complete
+window.addEventListener('load', function() {
+    const mButton = document.getElementById('magicMButton');
+    if (mButton) {
+        setTimeout(() => {
+            const footer = document.querySelector('footer');
+            if (footer) {
+                const footerRect = footer.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                if (footerRect.top <= windowHeight + 200) {
+                    mButton.classList.add('visible');
+                }
+            }
+        }, 500);
+    }
+});
 // Add visibility class for M button
 const mButtonStyle = document.createElement('style');
 mButtonStyle.textContent = `
